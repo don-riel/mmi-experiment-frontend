@@ -1,0 +1,13 @@
+.result_list {
+    margin-bottom: 2em;
+}
+
+.result_list li {
+    margin: 1.5em;
+    font-size: 1.3rem;
+}
+
+.reg_success_info {
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+}

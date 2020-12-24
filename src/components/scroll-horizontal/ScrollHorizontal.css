@@ -1,0 +1,33 @@
+.scroll-box-side {
+    border: 1px solid black;
+    width: 300px;
+    height: 300px;
+    margin: 1em auto;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+
+.scroll-box-side::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.scroll-side-btn {
+    padding: 2em;
+    height: 150px;
+    width: 100px;
+    margin: 1em;
+}
+
+.scroll-side-btn:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

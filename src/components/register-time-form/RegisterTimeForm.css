@@ -1,0 +1,9 @@
+p.label {
+    font-size: 1.5rem;    
+    color: black;
+}
+
+label:hover  {
+    background-color: rgb(238, 236, 236);
+    border-radius: 10px;
+}

@@ -1,0 +1,46 @@
+
+.task-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h2 {
+    margin-bottom: 1em;
+    max-width: 800px;
+}
+
+ul {
+    padding-left: none;
+    text-align: left;
+}
+
+li {
+    list-style: none;
+}
+
+.btn {
+    border: 1px solid rgb(173, 173, 173);
+    padding: 1em 2em;
+    border-radius: 8px;
+    background-color: rgb(94, 130, 143);
+    color: white;
+}
+
+.btn:hover {
+    cursor: pointer;
+    background-color:  lightblue;
+    color: black;
+}
+
+.next_task_btn {
+    background-color: rgb(75, 219, 159);
+}
+
+.task_done_msg {
+    font-size: 1.5rem;
+    margin: 0;
+}

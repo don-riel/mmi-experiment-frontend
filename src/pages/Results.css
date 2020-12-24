@@ -1,0 +1,83 @@
+.results {
+  padding: 1em 2em;
+}
+
+.dl {
+  display: flex;
+}
+
+.dl p {
+  margin-left: 1em;
+}
+
+.back_link {
+  margin: 1em 0;
+  font-size: 1.3rem;
+  color: black;
+}
+
+.results ul {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 0.5em;
+  background-color: rgb(230, 223, 223);
+}
+
+.results ul,
+.results-title ul {
+  display: flex;
+  justify-content: space-around;
+}
+
+.results ul:nth-child(odd) {
+  background-color: rgb(180, 199, 206);
+}
+
+#title ul {
+  background-color: rgb(83, 125, 141);
+  padding: 1em 2em;
+  margin-bottom: 2em;
+}
+
+#title ul li {
+  color: white;
+  font-size: 1rem;
+}
+
+.result-desc {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-desc h2 {
+  margin: 0;
+}
+
+.result-desc p {
+  font-weight: 700;
+  padding: 0.5em;
+  color: rgb(77, 76, 76);
+  background-color: rgb(245, 241, 241);
+  border-radius: 3px;
+}
+
+.result-desc p:hover {
+  background-color: rgb(180, 199, 206);
+  cursor: pointer;
+}
+
+.results-list {
+  margin-bottom: 2em;
+  animation-name: entrance;
+  animation-duration: 1s;
+}
+
+@keyframes entrance {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

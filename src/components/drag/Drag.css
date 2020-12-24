@@ -1,0 +1,52 @@
+
+#container {
+    width: 600px;
+    height: 500px;
+    margin: 0 auto;
+    background-color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 7px;
+    touch-action: none;
+    padding-left:1em ;
+    position: relative;
+  }
+
+  .item {
+    border-radius: 50%;
+    touch-action: none;
+    user-select: none;
+    position: relative;
+    margin-bottom: 0.5em;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(245, 230, 99);
+    border: 10px solid rgba(136, 136, 136, .5);
+    top: 0px;
+    left: 0px;
+  }
+
+  .item:active {
+    opacity: .75;
+  }
+
+  .item:hover {
+    cursor: pointer;
+  }
+
+  .zone {
+    width: 200px;
+    height: 100%;
+    background-color: rgb(110, 104, 104);
+    position: absolute;
+    right: 0;
+  }
+
+  .hide {
+      opacity: 0;
+  }
+
+
+ 

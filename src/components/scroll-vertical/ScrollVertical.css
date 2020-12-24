@@ -1,0 +1,28 @@
+.scroll-box {
+    border: 1px solid black;
+    width: 300px;
+    height: 300px;
+    margin: 1em auto;
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.scroll-box::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
+.scroll-btn {
+    width: 150px;
+    height: 100px;
+    margin: 0.5em;
+}
+
+.scroll-btn:hover {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}

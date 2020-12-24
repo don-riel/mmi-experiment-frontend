@@ -1,0 +1,17 @@
+.copy-txt {
+    color: blue;
+    width: 500px;
+    margin: 1em auto 2em;
+}
+.txt-input {
+    width: 350px;
+    height: 200px;
+    margin-right: 1em;
+    text-align: inherit;
+}
+
+.block {
+    display: block;
+    margin: 0 auto;
+}
+
