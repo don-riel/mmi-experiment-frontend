@@ -69,7 +69,9 @@ function Results({ inputDevice }) {
   };
 
   const onDownload = (type) => {
-    window.open(`https://mmi-experiment.herokuapp.com/results/download/${type}`);
+    window.open(
+      `https://mmi-experiment.herokuapp.com/results/download/${type}`
+    );
   };
 
   //toggle to hide/show results list
@@ -109,19 +111,26 @@ function Results({ inputDevice }) {
       {/* show Mouse results */}
       <div className="result-desc">
         <h2>Mouse</h2>
-
-        <div className="dl">
-          <p onClick={() => {
-            onDownload("mouse")
-          }}>Download as .csv file</p>
-          <p
-            onClick={() => {
-              onHideResult("mouse");
-            }}
-          >
-            {hideMouseResults ? "show" : "hide"}
-          </p>
-        </div>
+        {mouseResults.length ? (
+          <div className="dl">
+            <p
+              onClick={() => {
+                onDownload("mouse");
+              }}
+            >
+              Download as .csv file
+            </p>
+            <p
+              onClick={() => {
+                onHideResult("mouse");
+              }}
+            >
+              {hideMouseResults ? "show" : "hide"}
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {!hideMouseResults ? (
         <div className="results-list">
@@ -147,18 +156,26 @@ function Results({ inputDevice }) {
       {/* show Touchpad results */}
       <div className="result-desc">
         <h2>Touchpad</h2>
-        <div className="dl">
-          <p onClick={() => {
-            onDownload("touchpad")
-          }}>Download as .csv file</p>
-          <p
-            onClick={() => {
-              onHideResult("touchpad");
-            }}
-          >
-            {hideTouchpadResults ? "show" : "hide"}
-          </p>
-        </div>
+        {touchpadResults.length ? (
+          <div className="dl">
+            <p
+              onClick={() => {
+                onDownload("touchpad");
+              }}
+            >
+              Download as .csv file
+            </p>
+            <p
+              onClick={() => {
+                onHideResult("touchpad");
+              }}
+            >
+              {hideTouchpadResults ? "show" : "hide"}
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {!hideTouchpadResults ? (
         <div className="results-list">
@@ -184,18 +201,26 @@ function Results({ inputDevice }) {
       {/* show Touchscreen results */}
       <div className="result-desc">
         <h2>Touchscreen</h2>
-        <div className="dl">
-          <p onClick={() => {
-            onDownload("touchscreen")
-          }}>Download as .csv file</p>
-          <p
-            onClick={() => {
-              onHideResult("touchscreen");
-            }}
-          >
-            {hideTouchscreenResults ? "show" : "hide"}
-          </p>
-        </div>
+        {touchscreenResults.length ? (
+          <div className="dl">
+            <p
+              onClick={() => {
+                onDownload("touchscreen");
+              }}
+            >
+              Download as .csv file
+            </p>
+            <p
+              onClick={() => {
+                onHideResult("touchscreen");
+              }}
+            >
+              {hideTouchscreenResults ? "show" : "hide"}
+            </p>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
       {!hideTouchscreenResults ? (
         <div className="results-list">
