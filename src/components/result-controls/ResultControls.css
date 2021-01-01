@@ -1,0 +1,7 @@
+.controls {
+    display: flex;
+  }
+  
+  .controls p {
+    margin-left: 1em;
+  }

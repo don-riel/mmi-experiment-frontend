@@ -2,14 +2,6 @@
   padding: 1em 2em;
 }
 
-.dl {
-  display: flex;
-}
-
-.dl p {
-  margin-left: 1em;
-}
-
 .back_link {
   margin: 1em 0;
   font-size: 1.3rem;

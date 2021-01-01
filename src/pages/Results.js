@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import ResultList from "../components/results-list/ResultList.jsx";
+import ResultItem from "../components/results-items/ResultItem.jsx";
+import ResultControls from "../components/result-controls/ResultControls";
 
 import "./Results.css";
 
@@ -14,8 +15,8 @@ function Results({ inputDevice }) {
   const [hideTouchpadResults, setHideTouchpadResults] = useState(false);
   const [hideTouchscreenResults, setHideTouchscreenResults] = useState(false);
 
-  const getMouseResults = () => {
-    fetch("https://mmi-experiment.herokuapp.com/results/mouse")
+  const fetchResults = () => {
+    fetch("https://mmi-experiment.herokuapp.com/results/mouse") //fetch mouse results data
       .then((res) => {
         return res.json();
       })
@@ -26,54 +27,44 @@ function Results({ inputDevice }) {
           });
         });
       })
-      .catch(() => {
-        setFetchFailed(true);
-      });
-  };
-
-  const getTouchPadResults = () => {
-    fetch("https://mmi-experiment.herokuapp.com/results/touchpad")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        res.forEach((element) => {
-          element.forEach((time) => {
-            setTouchpadResults((touchpadResults) => [...touchpadResults, time]);
+      .then(() => {
+        fetch("https://mmi-experiment.herokuapp.com/results/touchpad") //fetch touchpad results data
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            res.forEach((element) => {
+              element.forEach((time) => {
+                setTouchpadResults((touchpadResults) => [
+                  ...touchpadResults,
+                  time,
+                ]);
+              });
+            });
           });
-        });
       })
-      .catch(() => {
-        setFetchFailed(true);
-      });
-  };
-
-  const getTouchscreenResults = () => {
-    fetch("https://mmi-experiment.herokuapp.com/results/touchscreen")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        res.forEach((element) => {
-          element.forEach((time) => {
-            setTouchscreenResults((touchscreenResults) => [
-              ...touchscreenResults,
-              time,
-            ]);
+      .then(() => {
+        fetch("https://mmi-experiment.herokuapp.com/results/touchscreen") //fetch touchscreen results data
+          .then((res) => {
+            return res.json();
+          })
+          .then((res) => {
+            res.forEach((element) => {
+              element.forEach((time) => {
+                setTouchscreenResults((touchscreenResults) => [
+                  ...touchscreenResults,
+                  time,
+                ]);
+              });
+            });
           });
-        });
       })
       .catch(() => {
         setFetchFailed(true);
       });
   };
 
-  const onDownload = (type) => {
-    window.open(
-      `https://mmi-experiment.herokuapp.com/results/download/${type}`
-    );
-  };
-
+  
   //toggle to hide/show results list
   const onHideResult = (type) => {
     if (type === "mouse") {
@@ -86,9 +77,7 @@ function Results({ inputDevice }) {
   };
 
   useEffect(() => {
-    getMouseResults();
-    getTouchPadResults();
-    getTouchscreenResults();
+    fetchResults();
   }, []);
 
   return (
@@ -111,43 +100,20 @@ function Results({ inputDevice }) {
       {/* show Mouse results */}
       <div className="result-desc">
         <h2>Mouse</h2>
-        {mouseResults.length ? (
-          <div className="dl">
-            <p
-              onClick={() => {
-                onDownload("mouse");
-              }}
-            >
-              Download as .csv file
-            </p>
-            <p
-              onClick={() => {
-                onHideResult("mouse");
-              }}
-            >
-              {hideMouseResults ? "show" : "hide"}
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
+        <ResultControls //hide/show and download .csv buttons
+          data={mouseResults}
+          dataType="mouse"
+          onHideResult={onHideResult}
+          bool_hide={hideMouseResults}
+        />
       </div>
       {!hideMouseResults ? (
         <div className="results-list">
-          {mouseResults.length ? (
-            <div>
-              <ResultList
-                data={mouseResults}
-                input={inputDevice === "mouse" ? inputDevice : ""}
-              />
-            </div>
-          ) : (
-            <p>
-              {fetchFailed
-                ? "Failed to fetched data. Pleses try again later!"
-                : "Fetching data..."}
-            </p>
-          )}
+          <ResultItem
+            result_data={mouseResults}
+            inputDevice={inputDevice}
+            bool_fetch={fetchFailed}
+          />
         </div>
       ) : (
         ""
@@ -156,43 +122,20 @@ function Results({ inputDevice }) {
       {/* show Touchpad results */}
       <div className="result-desc">
         <h2>Touchpad</h2>
-        {touchpadResults.length ? (
-          <div className="dl">
-            <p
-              onClick={() => {
-                onDownload("touchpad");
-              }}
-            >
-              Download as .csv file
-            </p>
-            <p
-              onClick={() => {
-                onHideResult("touchpad");
-              }}
-            >
-              {hideTouchpadResults ? "show" : "hide"}
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
+        <ResultControls //hide/show and download .csv
+          data={touchpadResults}
+          dataType="touchpad"
+          onHideResult={onHideResult}
+          bool_hide={hideTouchpadResults}
+        />
       </div>
       {!hideTouchpadResults ? (
         <div className="results-list">
-          {touchpadResults.length ? (
-            <div>
-              <ResultList
-                data={touchpadResults}
-                input={inputDevice === "touchpad" ? inputDevice : ""}
-              />
-            </div>
-          ) : (
-            <p>
-              {fetchFailed
-                ? "Failed to fetched data. Pleses try again later!"
-                : "Fetching data..."}
-            </p>
-          )}
+          <ResultItem
+            result_data={touchpadResults}
+            inputDevice={inputDevice}
+            bool_fetch={fetchFailed}
+          />
         </div>
       ) : (
         ""
@@ -201,43 +144,20 @@ function Results({ inputDevice }) {
       {/* show Touchscreen results */}
       <div className="result-desc">
         <h2>Touchscreen</h2>
-        {touchscreenResults.length ? (
-          <div className="dl">
-            <p
-              onClick={() => {
-                onDownload("touchscreen");
-              }}
-            >
-              Download as .csv file
-            </p>
-            <p
-              onClick={() => {
-                onHideResult("touchscreen");
-              }}
-            >
-              {hideTouchscreenResults ? "show" : "hide"}
-            </p>
-          </div>
-        ) : (
-          ""
-        )}
+        <ResultControls //hide/show and download .csv buttons
+          data={touchscreenResults}
+          dataType="touchscreen"
+          onHideResult={onHideResult}
+          bool_hide={hideTouchscreenResults}
+        />
       </div>
       {!hideTouchscreenResults ? (
         <div className="results-list">
-          {touchscreenResults.length ? (
-            <div>
-              <ResultList
-                data={touchscreenResults}
-                input={inputDevice === "touchscreen" ? inputDevice : ""}
-              />
-            </div>
-          ) : (
-            <p>
-              {fetchFailed
-                ? "Failed to fetched data. Please try again later!"
-                : "Fetching data..."}
-            </p>
-          )}
+          <ResultItem
+            result_data={touchscreenResults}
+            inputDevice={inputDevice}
+            bool_fetch={fetchFailed}
+          />
         </div>
       ) : (
         ""
