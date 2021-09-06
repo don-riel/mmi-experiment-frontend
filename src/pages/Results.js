@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import ResultItem from "../components/results-items/ResultItem.jsx";
@@ -15,56 +15,28 @@ function Results({ inputDevice }) {
   const [hideTouchpadResults, setHideTouchpadResults] = useState(false);
   const [hideTouchscreenResults, setHideTouchscreenResults] = useState(false);
 
-  const fetchResults = () => {
-    fetch("https://mmi-experiment.herokuapp.com/results/mouse") //fetch mouse results data
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        res.forEach((element) => {
-          element.forEach((time) => {
+  const fetchInputResult = useCallback (async (deviceType) => {
+    try {
+      const response = await fetch(`https://mmi-experiment.herokuapp.com/results/${deviceType}`)
+      const result = await response.json();
+      result.forEach((element) => {
+        element.forEach((time) => {
+          if (deviceType === "mouse") {
             setMouseResults((mouseResults) => [...mouseResults, time]);
-          });
+          }
+          else if (deviceType === "touchpad") {
+            setTouchpadResults((mouseResults) => [...mouseResults, time]);
+          }
+          else {
+            setTouchscreenResults((mouseResults) => [...mouseResults, time]);
+          }
         });
-      })
-      .then(() => {
-        fetch("https://mmi-experiment.herokuapp.com/results/touchpad") //fetch touchpad results data
-          .then((res) => {
-            return res.json();
-          })
-          .then((res) => {
-            res.forEach((element) => {
-              element.forEach((time) => {
-                setTouchpadResults((touchpadResults) => [
-                  ...touchpadResults,
-                  time,
-                ]);
-              });
-            });
-          });
-      })
-      .then(() => {
-        fetch("https://mmi-experiment.herokuapp.com/results/touchscreen") //fetch touchscreen results data
-          .then((res) => {
-            return res.json();
-          })
-          .then((res) => {
-            res.forEach((element) => {
-              element.forEach((time) => {
-                setTouchscreenResults((touchscreenResults) => [
-                  ...touchscreenResults,
-                  time,
-                ]);
-              });
-            });
-          });
-      })
-      .catch(() => {
-        setFetchFailed(true);
       });
-  };
+    } catch (error) {
+      setFetchFailed(true); 
+    }
+  },[setMouseResults, setTouchpadResults, setTouchscreenResults])
 
-  
   //toggle to hide/show results list
   const onHideResult = (type) => {
     if (type === "mouse") {
@@ -77,8 +49,10 @@ function Results({ inputDevice }) {
   };
 
   useEffect(() => {
-    fetchResults();
-  }, []);
+    fetchInputResult("mouse")
+    fetchInputResult("touchpad")
+    fetchInputResult("touchscreen")
+  }, [fetchInputResult]);
 
   return (
     <div className="results">

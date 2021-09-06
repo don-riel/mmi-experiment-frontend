@@ -7,7 +7,7 @@ function ResultItem({ result_data, inputDevice, bool_fetch }) {
       {result_data.length ? (
         <ResultList
           data={result_data}
-          input={inputDevice === "mouse" ? inputDevice : ""}
+          input={inputDevice !== "mouse" ? inputDevice : ""}
         />
       ) : (
         <p>
