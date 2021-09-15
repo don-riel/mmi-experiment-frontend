@@ -3,6 +3,11 @@
     border: 1px solid red;
 }
 
+.results_lists li {
+    width: 40px;
+    text-align: left;
+}
+
 .results_lists li:hover {
     cursor: initial;
     background-color: initial;
