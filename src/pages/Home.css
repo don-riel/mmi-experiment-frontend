@@ -73,3 +73,18 @@
     background-color:  rgb(94, 130, 143);
     border: 1px solid white;
 }
+
+.notice {
+    display: none;
+    font-size: 1.2rem;
+    color: rgb(179, 28, 28);
+}
+
+@media only screen and (max-width: 768px) {
+    .choice_box {
+        display: none;
+    }
+    .notice {
+        display: block;
+    }
+  }

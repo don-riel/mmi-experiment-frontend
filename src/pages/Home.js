@@ -21,6 +21,10 @@ function Home() {
         </p>
       </div>
 
+      <div className="notice">
+        <p>Contents does not work on small mobile devices. Use a tablet, laptop or dektop.</p>
+      </div>
+
       <div className="choice_box">
         <div className="choice_item choice_left">
           <p>
