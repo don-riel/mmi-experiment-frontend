@@ -16,7 +16,7 @@ function Home() {
         </p>
         <p>
           It was mainly designed to work on desktops/laptops and on an
-          iPad/tablet. Some of tasks are not designed to work an small mobile
+          iPad/tablet. Some of the tasks are not designed to work an small mobile
           devices.
         </p>
       </div>

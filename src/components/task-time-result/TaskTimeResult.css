@@ -1,10 +1,15 @@
-.result_list {
+.time_list {
     margin-bottom: 2em;
 }
 
-.result_list li {
+.time_list li {
     margin: 1.5em;
     font-size: 1.3rem;
+}
+
+.time_list li:hover {
+    cursor: initial;
+    background-color: initial;
 }
 
 .reg_success_info {

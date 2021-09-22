@@ -59,6 +59,7 @@ function Results({ inputDevice }) {
       <div className="back_link">
         <Link to="/" className="link">{`<< Back`}</Link>
       </div>
+      <p><i>Time results in seconds.</i></p>
 
       <div id="title" className="results-title">
         <ul>

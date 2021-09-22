@@ -77,7 +77,7 @@ class TaskTimeResult extends React.Component {
             {this.state.registerFormHidden ? (
               <div>
                 <h2>You have finished all tasks! :)</h2>
-                <ul className="result_list">
+                <ul className="time_list">
                   <li>Drag and Drop: {dragDropTime} secs</li>
                   <li>Copy and Paste Url: {copyUrlTime} secs</li>
                   <li>Copy and Paste Text Block: {copyTextBlockTime} secs</li>
