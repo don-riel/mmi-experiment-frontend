@@ -25,10 +25,10 @@ function Results({ inputDevice }) {
             setMouseResults((mouseResults) => [...mouseResults, time]);
           }
           else if (deviceType === "touchpad") {
-            setTouchpadResults((mouseResults) => [...mouseResults, time]);
+            setTouchpadResults((touchpadResults) => [...touchpadResults, time]);
           }
           else {
-            setTouchscreenResults((mouseResults) => [...mouseResults, time]);
+            setTouchscreenResults((touchscreenResults) => [...touchscreenResults, time]);
           }
         });
       });
